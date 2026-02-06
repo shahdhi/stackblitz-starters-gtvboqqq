@@ -62,7 +62,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 py-20 md:py-32">
+      <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-32">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -73,7 +73,7 @@ export default function Home() {
                 Sri Lanka's most trusted supplier of high-quality concrete products and heavy machinery hire services. Serving the construction industry with excellence since 1995.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/products" className="btn-primary inline-flex items-center justify-center gap-2">
+                <Link to="/products" className="btn-primary inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50">
                   View Products
                   <ArrowRight size={20} />
                 </Link>
@@ -83,8 +83,8 @@ export default function Home() {
               </div>
               <div className="mt-8 flex flex-wrap gap-6">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">{stat.value}</div>
+                  <div key={index} className="text-center animate-slideUpFade" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="text-3xl font-bold text-yellow-500">{stat.value}</div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
                   </div>
                 ))}
@@ -96,9 +96,9 @@ export default function Home() {
                 alt="Construction site with machinery"
                 className="rounded-2xl shadow-2xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl shadow-yellow-400/30 border-l-4 border-yellow-400">
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="text-green-500" size={32} />
+                  <CheckCircle className="text-yellow-500" size={32} />
                   <div>
                     <div className="font-bold text-gray-900">ISO Certified</div>
                     <div className="text-sm text-gray-600">Quality Assured</div>
@@ -122,9 +122,9 @@ export default function Home() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card p-6 text-center hover:-translate-y-1">
-                  <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="text-orange-600" size={32} />
+                <div key={index} className="card p-6 text-center hover:-translate-y-2">
+                  <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-yellow-400/30">
+                    <Icon className="text-yellow-600" size={32} />
                   </div>
                   <h3 className="font-bold text-xl mb-3">{feature.title}</h3>
                   <p className="text-gray-600">{feature.description}</p>
@@ -173,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-orange-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -199,7 +199,7 @@ export default function Home() {
                   <span>Experienced Operators Included</span>
                 </li>
               </ul>
-              <Link to="/services" className="bg-white text-orange-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2">
+              <Link to="/services" className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center gap-2 shadow-lg shadow-yellow-400/50">
                 View Services
                 <ArrowRight size={20} />
               </Link>
@@ -244,7 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white border-t-4 border-yellow-400">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
@@ -252,11 +252,11 @@ export default function Home() {
               Contact us today for a free quote and let our experts help you choose the right products and services for your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-orange-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-orange-700 transition-all duration-200 inline-flex items-center justify-center gap-2">
+              <Link to="/contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50">
                 Get Free Quote
                 <ArrowRight size={20} />
               </Link>
-              <a href="tel:+94112345678" className="bg-white text-gray-900 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center justify-center gap-2">
+              <a href="tel:+94112345678" className="bg-white text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-50 transition-all duration-300 inline-flex items-center justify-center gap-2 border-2 border-yellow-400">
                 <Clock size={20} />
                 Call Now
               </a>

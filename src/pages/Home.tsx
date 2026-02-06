@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Shield, Truck, Users, Award, Clock, MapPin } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function Home() {
+  const featuresRef = useScrollAnimation();
+  const productsRef = useScrollAnimation();
+  const testimonialsRef = useScrollAnimation();
+
   const features = [
     { icon: Shield, title: 'Premium Quality', description: 'ISO certified RCC products manufactured to highest standards' },
     { icon: Truck, title: 'Island-wide Delivery', description: 'Fast and reliable delivery to all areas across Sri Lanka' },
@@ -62,10 +67,10 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-32">
+      <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-32 overflow-hidden">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="animate-slideInLeft">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Premium RCC Products & Machinery Services
               </h1>
@@ -73,11 +78,11 @@ export default function Home() {
                 Sri Lanka's most trusted supplier of high-quality concrete products and heavy machinery hire services. Serving the construction industry with excellence since 1995.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/products" className="btn-primary inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50">
+                <Link to="/products" className="btn-primary btn-shine inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50">
                   View Products
                   <ArrowRight size={20} />
                 </Link>
-                <Link to="/contact" className="btn-secondary inline-flex items-center justify-center gap-2">
+                <Link to="/contact" className="btn-secondary btn-shine inline-flex items-center justify-center gap-2">
                   Get Quote
                 </Link>
               </div>
@@ -90,13 +95,15 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Construction site with machinery"
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl shadow-yellow-400/30 border-l-4 border-yellow-400">
+            <div className="relative animate-slideInRight">
+              <div className="image-zoom">
+                <img
+                  src="https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  alt="Construction site with machinery"
+                  className="rounded-2xl shadow-2xl"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 glass-effect p-6 rounded-xl shadow-2xl border-l-4 border-yellow-400 animate-floatUp">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="text-yellow-500" size={32} />
                   <div>
@@ -110,9 +117,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" ref={featuresRef}>
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 scroll-fade">
             <h2 className="section-title">Why Choose Samsons?</h2>
             <p className="section-subtitle mx-auto">
               We combine quality products, expert service, and reliable delivery to exceed your expectations
@@ -122,7 +129,7 @@ export default function Home() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card p-6 text-center hover:-translate-y-2">
+                <div key={index} className="card p-6 text-center scroll-scale stagger-item apple-hover" style={{ animationDelay: `${index * 0.15}s` }}>
                   <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-yellow-400/30">
                     <Icon className="text-yellow-600" size={32} />
                   </div>
@@ -135,9 +142,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50" ref={productsRef}>
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 scroll-fade">
             <h2 className="section-title">Our Products</h2>
             <p className="section-subtitle mx-auto">
               High-quality RCC concrete products for all your construction needs
@@ -145,7 +152,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product, index) => (
-              <div key={index} className="card group">
+              <div key={index} className="card group scroll-scale stagger-item" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={product.image}
@@ -164,8 +171,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link to="/products" className="btn-primary inline-flex items-center gap-2">
+          <div className="text-center mt-8 scroll-fade">
+            <Link to="/products" className="btn-primary btn-shine inline-flex items-center gap-2">
               View All Products
               <ArrowRight size={20} />
             </Link>
@@ -199,7 +206,7 @@ export default function Home() {
                   <span>Experienced Operators Included</span>
                 </li>
               </ul>
-              <Link to="/services" className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center gap-2 shadow-lg shadow-yellow-400/50">
+              <Link to="/services" className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center gap-2 shadow-lg shadow-yellow-400/50 btn-shine">
                 View Services
                 <ArrowRight size={20} />
               </Link>
@@ -215,9 +222,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" ref={testimonialsRef}>
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 scroll-fade">
             <h2 className="section-title">What Our Clients Say</h2>
             <p className="section-subtitle mx-auto">
               Trusted by hundreds of construction companies across Sri Lanka
@@ -225,7 +232,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="card p-6">
+              <div key={index} className="card p-6 scroll-scale stagger-item apple-hover" style={{ animationDelay: `${index * 0.15}s` }}>
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -251,12 +258,12 @@ export default function Home() {
             <p className="text-lg text-gray-300 mb-8">
               Contact us today for a free quote and let our experts help you choose the right products and services for your needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center scroll-fade">
+              <Link to="/contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg shadow-yellow-400/50 btn-shine">
                 Get Free Quote
                 <ArrowRight size={20} />
               </Link>
-              <a href="tel:+94112345678" className="bg-white text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-50 transition-all duration-300 inline-flex items-center justify-center gap-2 border-2 border-yellow-400">
+              <a href="tel:+94112345678" className="bg-white text-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-50 transition-all duration-300 inline-flex items-center justify-center gap-2 border-2 border-yellow-400 btn-shine">
                 <Clock size={20} />
                 Call Now
               </a>
